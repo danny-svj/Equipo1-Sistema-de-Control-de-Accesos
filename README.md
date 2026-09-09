@@ -1,3 +1,6 @@
+Equipo 1:
+Gael, Cesar, Daniel, Carlos y Diego
+
 # PANEL DE CONTROL DE ACCESOS PARA UN DEPARTAMENTO
 
 ### Para este proyecto, nos toco realizar un panel para los residentes de un departamento
