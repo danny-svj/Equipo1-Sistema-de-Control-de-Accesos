@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#183b42" />
+  <title>Vigía | Control de accesos</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="shell">
+    <aside class="sidebar">
+      <div class="brand"><span class="brand-mark">V</span><div><strong>vigía</strong><small>control de accesos</small></div></div>
+      <nav aria-label="Navegación principal">
+        <button class="nav-item active" data-view="resumen"><span class="nav-icon">◈</span>Resumen</button>
+        <button class="nav-item" data-view="residentes"><span class="nav-icon">♙</span>Residentes</button>
+        <button class="nav-item" data-view="visita"><span class="nav-icon">＋</span>Registrar visita</button>
+        <button class="nav-item" data-view="autorizaciones"><span class="nav-icon">✓</span>Autorizaciones</button>
+        <button class="nav-item" data-view="bitacora"><span class="nav-icon">≡</span>Bitácora</button>
+      </nav>
+      <div class="sidebar-spacer"></div>
+      <div class="security-note"><b>Caseta principal</b>La información se guarda en este dispositivo mediante almacenamiento local.</div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <div><div class="eyebrow" id="current-date">Miércoles, 09 septiembre 2026</div><h1 id="page-title">Puesto de control</h1><p class="subtitle" id="page-subtitle">Una vista rápida del movimiento en la colonia.</p></div>
+        <div class="guard-chip"><span class="guard-avatar" id="guard-avatar">--</span><div><small>Guardia en turno</small><b id="guard-name">Sin turno activo</b></div></div>
+      </header>
+
+      <section class="view active" id="view-resumen">
+        <div class="stats"><article class="stat"><div class="stat-label">Residentes activos</div><div class="stat-value" id="stat-residents">0</div><div class="stat-note">en el padrón</div></article><article class="stat"><div class="stat-label">Visitantes dentro</div><div class="stat-value" id="stat-inside">0</div><div class="stat-note">en este momento</div></article><article class="stat"><div class="stat-label">Solicitudes pendientes</div><div class="stat-value" id="stat-pending">0</div><div class="stat-note">requieren respuesta</div></article><article class="stat"><div class="stat-label">Accesos del día</div><div class="stat-value" id="stat-today">0</div><div class="stat-note">entradas registradas</div></article></div>
+        <div class="dashboard-grid"><article class="panel"><div class="panel-header"><div><h2>Personas dentro</h2><p><span class="status-dot"></span>Estado actual de la colonia</p></div><span class="badge badge-inside" id="inside-count-label">0 personas</span></div><div class="inside-list" id="inside-list"></div></article><article class="panel shift-panel"><div class="panel-header"><div><h2>Guardia / portero</h2><p>Control de la jornada operativa</p></div></div><div id="shift-content"></div></article></div>
+      </section>
+
+      <section class="view" id="view-residentes"><div class="section-heading"><div><div class="eyebrow">Padrón de la colonia</div><h2>Residentes</h2></div><span class="badge badge-inside" id="resident-count-label">0 activos</span></div><div class="two-col"><article class="panel"><div class="panel-header"><div><h2>Alta de residente</h2><p>Agrega una persona al padrón de acceso.</p></div></div><div id="resident-alert" class="alert"></div><form id="resident-form"><div class="form-grid"><div class="field full"><label for="resident-name">Nombre completo *</label><input id="resident-name" required placeholder="Ej. Mariana López García" /></div><div class="field"><label for="resident-home">Casa / depto. *</label><input id="resident-home" required placeholder="Ej. Casa 18" /></div><div class="field"><label for="resident-phone">Teléfono *</label><input id="resident-phone" required type="tel" placeholder="Ej. 55 1234 5678" /></div><div class="field full"><label for="resident-relation">Relación *</label><select id="resident-relation" required><option value="">Selecciona una opción</option><option>Titular</option><option>Familiar</option><option>Arrendatario</option></select></div></div><div class="actions"><button class="btn btn-primary" type="submit">Dar de alta</button><span class="helper">Los campos marcados son obligatorios.</span></div></form></article><article class="panel"><div class="panel-header"><div><h2>Directorio activo</h2><p>Personas autorizadas como residentes.</p></div></div><div id="resident-list" class="resident-list"></div></article></div></section>
+
+      <section class="view" id="view-visita"><div class="section-heading"><div><div class="eyebrow">Entrada de visitantes</div><h2>Registrar solicitud</h2></div><span class="badge badge-pending">Paso 1 de 2</span></div><div class="two-col"><article class="panel"><div class="panel-header"><div><h2>Datos de la visita</h2><p>Indica a quién visita, el motivo y cuándo llegará.</p></div></div><div id="visit-alert" class="alert"></div><form id="visit-form"><div class="form-grid"><div class="field full"><label for="visitor-name">Nombre del visitante *</label><input id="visitor-name" required placeholder="Ej. Carlos Ramírez" /></div><div class="field"><label for="visitor-id">Identificación o placas *</label><input id="visitor-id" required placeholder="INE / ABC-123" /></div><div class="field"><label for="visitor-type">Tipo de visita *</label><select id="visitor-type" required><option value="">Selecciona una opción</option><option>Familia</option><option>Proveedor</option><option>Taxi / plataforma</option></select></div><div class="field"><label for="visitor-home">Casa / depto. destino *</label><input id="visitor-home" required placeholder="Ej. Casa 18" /></div><div class="field"><label for="visitor-resident">¿A quién visita? *</label><select id="visitor-resident" required><option value="">Primero escribe el departamento</option></select></div><div class="field"><label for="visit-date">Fecha de visita *</label><input id="visit-date" required type="date" /></div><div class="field"><label for="visit-time">Hora estimada *</label><input id="visit-time" required type="time" /></div></div><div class="actions"><button class="btn btn-primary" type="submit">Enviar a autorización</button><span class="helper">El residente anfitrión debe validar la solicitud.</span></div></form></article><article class="panel"><div class="panel-header"><div><h2>Flujo de acceso</h2><p>Así se protege cada entrada.</p></div></div><div class="inside-list"><div class="inside-item"><span class="avatar">01</span><div><div class="person-name">Registro en caseta</div><div class="person-meta">Se captura quién visita y a quién.</div></div></div><div class="inside-item"><span class="avatar">02</span><div><div class="person-name">Validación del anfitrión</div><div class="person-meta">El residente autoriza o rechaza.</div></div></div><div class="inside-item"><span class="avatar">03</span><div><div class="person-name">Entrada controlada</div><div class="person-meta">Se registra la hora real de ingreso.</div></div></div></div></article></div></section>
+
+      <section class="view" id="view-autorizaciones"><div class="section-heading"><div><div class="eyebrow">Validación del residente</div><h2>Autorizaciones</h2></div><span class="badge badge-pending" id="approval-count-label">0 pendientes</span></div><article class="panel"><div class="panel-header"><div><h2>Solicitudes por responder</h2><p>El residente anfitrión revisa y decide sobre la visita.</p></div></div><div id="approval-list"></div></article></section>
+
+      <section class="view" id="view-bitacora"><div class="section-heading"><div><div class="eyebrow">Historial operativo</div><h2>Bitácora de accesos</h2></div><span class="badge badge-out" id="log-count-label">0 registros</span></div><div class="table-wrap"><table><thead><tr><th>Visitante</th><th>A quién visita</th><th>Tipo</th><th>Destino</th><th>Fecha programada</th><th>Guardia</th><th>Entrada</th><th>Salida</th><th>Estado</th><th></th></tr></thead><tbody id="log-body"></tbody></table></div></section>
+    </main>
+  </div>
+
+  <div class="modal-backdrop" id="shift-modal"><div class="modal"><h2 id="modal-title">Iniciar turno</h2><p id="modal-copy">Captura el nombre del guardia que estará a cargo de la caseta.</p><form id="shift-form"><div class="field"><label for="guard-input">Nombre del guardia *</label><input id="guard-input" required placeholder="Ej. José Hernández" /></div><div class="actions"><button class="btn btn-primary" type="submit">Iniciar turno</button><button class="btn btn-ghost" type="button" id="close-modal">Cancelar</button></div></form></div></div>
+  <script src="script.js"></script>
+</body>
+</html>
