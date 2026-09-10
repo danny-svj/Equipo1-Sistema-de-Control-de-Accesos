@@ -35,3 +35,10 @@ test('lista solo residentes activos', async () => {
   expect(res.body).toHaveLength(1);
   expect(res.body[0].home).toBe('Casa 20');
 });
+
+test('obtiene un residente por id', async () => {
+  const creado = await request(app).post('/api/residentes').send(residenteValido);
+  const res = await request(app).get(`/api/residentes/${creado.body.id}`);
+  expect(res.status).toBe(200);
+  expect(res.body.name).toBe(residenteValido.name);
+});
