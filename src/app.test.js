@@ -19,3 +19,9 @@ test('crea un residente con datos válidos', async () => {
   expect(res.body.name).toBe(residenteValido.name);
 });
 
+test('rechaza el alta si falta un campo obligatorio', async () => {
+  const res = await request(app)
+    .post('/api/residentes')
+    .send({ ...residenteValido, name: '' });
+  expect(res.status).toBe(400);
+});
