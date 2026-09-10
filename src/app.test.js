@@ -25,3 +25,13 @@ test('rechaza el alta si falta un campo obligatorio', async () => {
     .send({ ...residenteValido, name: '' });
   expect(res.status).toBe(400);
 });
+
+test('lista solo residentes activos', async () => {
+  const creado = await request(app).post('/api/residentes').send(residenteValido);
+  await request(app).delete(`/api/residentes/${creado.body.id}`);
+  await request(app).post('/api/residentes').send({ ...residenteValido, home: 'Casa 20' });
+
+  const res = await request(app).get('/api/residentes');
+  expect(res.body).toHaveLength(1);
+  expect(res.body[0].home).toBe('Casa 20');
+});
