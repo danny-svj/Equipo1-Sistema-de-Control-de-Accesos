@@ -1,5 +1,5 @@
 Equipo 1:
-Gael, Cesar, Daniel, Carlos y Diego
+Gael, Cesar, Daniel, Carlos , Diego y Hector
 
 # PANEL DE CONTROL DE ACCESOS PARA UN DEPARTAMENTO
 
@@ -45,7 +45,23 @@ Las caracteristicas de los roles y sus funciones dentro del sistema:
 * __Control de versiones: Git y GitHub__
 
 
-# Instalacion y Uso Local
+# Instalación y Uso Local
+
+## Estructura del proyecto
+
+```text
+mi-proyecto-edificio/
+├── public/
+│   ├── index.html
+│   ├── styles.css
+│   └── script.js
+├── src/
+│   ├── app.js
+│   └── app.test.js
+├── package.json
+└── server.js
+```
+
 1. Clonar el repositorio de esta manera:
 
 ``` bash
@@ -53,5 +69,22 @@ git clone https://github.com/danny-svj/Equipo1-Sistema-de-Control-de-Accesos.git
 cd Equipo1-Sistema-de-Control-de-Accesos
 ```
 
-2. Ejecutar el panel
-* Abrir el archivo __index.html__ en el navegador
+2. Instalar las dependencias:
+
+```bash
+npm install
+```
+
+3. Ejecutar las pruebas del módulo de residentes:
+
+```bash
+npm test
+```
+
+4. Iniciar el servidor:
+
+```bash
+npm start
+```
+
+Después, abrir `http://localhost:3000` en el navegador. La API CRUD de residentes está disponible en `/api/residentes` con los métodos `GET`, `POST`, `PUT` y `DELETE`.
