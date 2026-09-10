@@ -42,3 +42,12 @@ test('obtiene un residente por id', async () => {
   expect(res.status).toBe(200);
   expect(res.body.name).toBe(residenteValido.name);
 });
+
+test('actualiza el teléfono de un residente existente', async () => {
+  const creado = await request(app).post('/api/residentes').send(residenteValido);
+  const res = await request(app)
+    .put(`/api/residentes/${creado.body.id}`)
+    .send({ phone: '81 9999 0000' });
+  expect(res.status).toBe(200);
+  expect(res.body.phone).toBe('81 9999 0000');
+});
